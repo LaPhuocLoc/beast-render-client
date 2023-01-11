@@ -1,0 +1,96 @@
+@use "../../scss/" as *;
+.geargrid {
+  width: 100%;
+  &__item {
+    position: relative;
+    padding: 9vh 0 9vh;
+    overflow: hidden;
+    &__info {
+      // @include flex(flex-start, space-between);
+      // flex-direction: column;
+      z-index: 1;
+      position: relative;
+      filter: drop-shadow(0 0 10px #111111);
+      .price {
+        span {
+          display: block;
+          // font-family: $cabin;
+        }
+        &-text {
+          color: var(--secondary-color);
+        }
+        &-num {
+          color: var(--main-color);
+          font-size: 2rem;
+          font-weight: 600;
+        }
+      }
+      .browse {
+        margin-top: 150px;
+        @include tablet {
+          margin-top: 100px;
+        }
+        .name {
+          font-weight: 700;
+          font-size: 32px;
+          text-transform: capitalize;
+        }
+      }
+    }
+    &__img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      img {
+        position: absolute;
+        top: 0;
+        left: 0;
+        object-position: center;
+        object-fit: cover;
+        filter: drop-shadow(-25px 25px 25px #111111);
+      }
+    }
+    #img-mouses img {
+      transform: translateX(35%) scale(1.2);
+      @include desktop {
+        transform: translateX(35%) scale(1);
+      }
+    }
+    #img-headsets img {
+      transform: translateX(35%) scale(1.1);
+      @include desktop {
+        transform: translateX(35%) scale(1);
+      }
+    }
+    #img-keyboards img {
+      transform: translate(35%, 55%) scale(1.5) rotate(90deg);
+      @include desktop {
+        transform: translate(35%, 35%) scale(1.5) rotate(90deg);
+      }
+      @include tablet {
+        transform: translate(35%, 35%) scale(1.2) rotate(90deg);
+      }
+      @include mobile {
+        transform: translate(45%, 25%) scale(1.2) rotate(90deg);
+      }
+    }
+    #img-mousepads img {
+      transform: translate(50%, -10%) scale(1.2) rotate(10deg);
+      @include desktop {
+        transform: translate(60%, -10%) scale(1.2) rotate(10deg);
+      }
+      @include tablet {
+        transform: translate(50%, -5%) scale(1.2) rotate(10deg);
+      }
+    }
+  }
+  #geargrid__item-0,
+  #geargrid__item-1,
+  #geargrid__item-2,
+  #geargrid__item-3 {
+    border: 1px solid var(--divider-color);
+    margin: 0 -1px -1px 0;
+  }
+}

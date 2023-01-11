@@ -1,0 +1,168 @@
+@use "../../scss/" as *;
+.btn {
+  overflow: hidden;
+  display: inline-block;
+  line-height: 1.4;
+  border-radius: 35px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  text-align: center;
+  cursor: pointer;
+  vertical-align: middle;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  transition: all 0.25s ease-in-out;
+  text-transform: uppercase;
+  text-decoration: none !important;
+  position: relative;
+  z-index: 1;
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--txt-color);
+  background-color: transparent;
+  outline: none !important;
+  cursor: pointer !important;
+  border: 1px solid var(--main-color);
+  padding: 0;
+  // &::before {
+  //   z-index: -1;
+  //   content: "";
+  //   position: absolute;
+  //   top: 0;
+  //   bottom: 0;
+  //   left: 0;
+  //   right: 0;
+  //   transform: translateX(-100%);
+  //   background-color: var(--main-color);
+  //   transition: all 0.4s ease;
+  // }
+  // &:hover::before {
+  //   transform: translateX(0);
+  // }
+  &:hover {
+    .btn-text {
+      color: white !important;
+    }
+  }
+  &-text {
+    position: relative;
+    z-index: 2;
+    color: var(--txt-color);
+    transition: all 0.3s ease;
+    display: block;
+    padding: 16px 32px 16px 64px;
+  }
+  &-icon {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    bottom: 0;
+    width: 55px;
+    height: 55px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 28px;
+    color: #fff;
+    background-color: var(--main-color);
+    border-radius: 50%;
+    animation-name: slide-out;
+    animation-duration: 0.3s;
+    animation-fill-mode: backwards;
+    animation-iteration-count: 1;
+    &::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -180px;
+      height: 100%;
+      width: 200px;
+      background-color: var(--main-color);
+      z-index: -10;
+    }
+  }
+}
+// Small button
+.btn.small {
+  .btn-text {
+    padding: 12px 23px 12px 46px;
+    font-size: .9375rem;
+  }
+  .btn-icon {
+    width: 45px;
+    height: 45px;
+    font-size: 1rem;
+  }
+}
+.btn.small.is-hover {
+  .btn-text {
+    padding: 12px 46px 12px 23px;
+  }
+  .btn-icon {
+    animation-name: slide-in-small;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+  }
+}
+// Extra small button
+.btn.xs-small {
+  .btn-text {
+    padding: 10px 18px 10px 38px;
+    font-size: .8125rem;
+  }
+  .btn-icon {
+    width: 38px;
+    height: 38px;
+    font-size: .875rem;
+  }
+}
+.btn.xs-small.is-hover {
+  .btn-text {
+    padding: 10px 38px 10px 18px;
+  }
+  .btn-icon {
+    animation-name: slide-in-xs-small;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+  }
+}
+// button hover
+.btn.is-hover {
+  .btn-text {
+    padding: 16px 64px 16px 32px;
+  }
+  .btn-icon {
+    animation-name: slide-in;
+    animation-duration: 0.3s;
+    animation-fill-mode: forwards;
+    animation-iteration-count: 1;
+  }
+}
+
+@keyframes slide-in {
+  100% {
+    left: calc(100% - 53px);
+  }
+}
+@keyframes slide-in-small {
+  100% {
+    left: calc(100% - 45px);
+  }
+}
+@keyframes slide-in-xs-small {
+  100% {
+    left: calc(100% - 38px);
+  }
+}
+@keyframes slide-out {
+  0% {
+    left: calc(100% - 55px);
+  }
+  100% {
+    left: -1px;
+  }
+}
+

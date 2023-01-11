@@ -1,0 +1,15 @@
+.no-mobile-support {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 0 2rem;
+  height: 100vh;
+  width: 100%;
+  background-color: #252525;
+  color: #fff;
+  font-size: 1.5em;
+  h1 {
+    font-family: 'Rubik', cursive;
+  }
+}

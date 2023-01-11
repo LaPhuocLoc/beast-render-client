@@ -1,0 +1,63 @@
+@use "../../scss/" as *;
+.gear-card {
+  @include flex(center, flex-end);
+  flex-direction: column;
+  height: 550px;
+  z-index: 1;
+  transition: all 0.3s;
+
+  &__img,
+  &__body {
+    width: 100%;
+  }
+  &__img {
+    height: 50%;
+    transition: all 0.3s;
+
+    img {
+      object-fit: contain;
+      filter: drop-shadow(0 0 10px #111111);
+    }
+  }
+  &:hover {
+    .gear-card__img {
+      transform: scale(1.1) translateY(-10px);
+    }
+    .gear-card__body {
+      .name {
+        transform: scale(1.1);
+      }
+    }
+  }
+  &__body {
+    @include flex(center, space-between);
+    flex-direction: column;
+    height: 40%;
+
+    .name {
+      text-align: center;
+      margin-top: 1rem;
+      transition: all 0.3s;
+
+      h3 {
+        color: var(--txt-color);
+        margin: 0;
+        filter: drop-shadow(0 0 10px #111111);
+      }
+      p {
+        color: var(--secondary-color);
+        text-transform: capitalize;
+        margin: 0;
+        font-size: 15px;
+      }
+    }
+    .price {
+      span {
+        color: var(--main-color);
+        font-size: 1.625rem;
+        font-weight: 500;
+        margin-bottom: 0.75rem;
+      }
+    }
+  }
+}

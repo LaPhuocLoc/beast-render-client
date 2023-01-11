@@ -1,0 +1,60 @@
+@use "../../scss/" as *;
+.pro-gamer {
+  width: 100%;
+  &__item {
+    position: relative;
+    padding: 9vh 0 9vh;
+    min-height: 400px;
+    overflow: hidden;
+    border: 1px solid var(--divider-color);
+    margin: 0 -1px -1px 0;
+    &__info {
+      @include flex(flex-start, space-between);
+      flex-direction: column;
+      z-index: 1;
+      position: relative;
+      filter: drop-shadow(0 0 10px #111111);
+      &-top {
+        margin-bottom: 250px;
+        color: var(--secondary-color);
+        font-weight: 500;
+      }
+      &-bottom {
+        .title {
+          margin-bottom: 2rem;
+          span {
+            display: block;
+            // font-family: $gotham;
+            font-weight: 900;
+            font-size: 42px;
+            line-height: 52px;
+          }
+        }
+      }
+    }
+    &__img {
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+
+      img {
+        position: absolute;
+        right: 0;
+        // bottom: 0;
+        top: 5%;
+        object-position: center;
+        object-fit: cover;
+        filter: drop-shadow(-25px 25px 25px #111111);
+        transform: translateX(30%);
+        @include desktop {
+          transform: translateX(30%);
+        }
+        @include mobile {
+          display: none;
+        }
+      }
+    }
+  }
+}

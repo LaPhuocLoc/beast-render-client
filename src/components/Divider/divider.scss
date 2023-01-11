@@ -1,0 +1,7 @@
+@use '../../scss/' as *;
+.divider {
+  width: 100%;
+  background-color: var(--secondary-color);
+  opacity: .4;
+  margin: 0;
+}

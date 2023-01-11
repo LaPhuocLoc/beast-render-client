@@ -1,0 +1,62 @@
+@use "../../scss/" as *;
+.bg-text {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  @include flex(center, flex-start);
+  pointer-events: none;
+  overflow: hidden;
+  h1 {
+    margin: 0;
+    color: var(--secondary-color);
+    text-transform: uppercase;
+    font-family: $gotham-black;
+    font-weight: 900;
+  }
+}
+// Carousel
+.carousel__item {
+  .bg-text h1 {
+    font-size: 250px;
+    line-height: 350px;
+    opacity: 0;
+    transition: transform 0.6s linear, opacity 0.3s ease;
+    transform: translateX(-100%);
+  }
+}
+.carousel__item.active {
+  .bg-text h1 {
+    transition-delay: 0.7s, 0.7s;
+    transform: translateX(-50px);
+    opacity: 0.2;
+  }
+}
+// GearGrid
+.geargrid__item {
+  .bg-text h1 {
+    font-size: 150px;
+    line-height: 250px;
+    opacity: 0.2;
+    transform: translateX(-5%);
+  }
+}
+// Gear List
+.gear-list {
+  .bg-text h1 {
+    font-size: 400px;
+    line-height: 550px;
+    opacity: 0.1;
+    transform: translateX(-5%);
+  }
+}
+// Pro Gamer
+.pro-gamer {
+  .bg-text h1 {
+    font-size: 250px;
+    line-height: 300px;
+    opacity: 0.1;
+    transform: translateX(-5%);
+  }
+}
