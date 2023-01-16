@@ -5,6 +5,7 @@ import { IoAdd, IoRemove } from 'react-icons/io5'
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cartReducer";
 import { apiClient } from './../../apiClient/apiClient';
+import { openModal } from "../../redux/modalReducer";
 import Loading from "../../components/Loading/Loading";
 import './product.scss'
 
@@ -14,7 +15,23 @@ const Product = () => {
   const [data, setData] = useState([])
   const [loading, setLoading] = useState(true)
   const dispatch = useDispatch();
-
+  const handleOpenCart = () => {
+    dispatch(openModal())
+  }
+  const handleAddToCart = (e) => {
+    e.preventDefault();
+    dispatch(
+      addToCart({
+        id: data.id,
+        title: data.attributes.title,
+        desc: data.attributes.desc,
+        price: data.attributes.price,
+        img: data.attributes.img.data.attributes.url,
+        quantity: quantity || 1,
+      })
+    )
+    handleOpenCart()
+  }
   useEffect(() => {
     window.scrollTo(0, 0)
     const fetchData = async () => {
@@ -30,7 +47,7 @@ const Product = () => {
   }, [id]);
   return (
     <div className="product">
-      {loading ? <Loading/> :
+      {loading ? <Loading /> :
         (
           <>
             {/* <div className="slide"></div> */}
@@ -39,7 +56,7 @@ const Product = () => {
                 <span>Best Seller</span>
                 <img
                   src={
-                    
+
                     data?.attributes?.img?.data?.attributes?.url
                   }
                   alt=""
@@ -70,18 +87,7 @@ const Product = () => {
                   <p>Instock. Ready to ship</p>
                   <button
                     className="add-cart-btn"
-                    onClick={() =>
-                      dispatch(
-                        addToCart({
-                          id: data.id,
-                          title: data.attributes.title,
-                          desc: data.attributes.desc,
-                          price: data.attributes.price,
-                          img: data.attributes.img.data.attributes.url,
-                          quantity,
-                        })
-                      )
-                    }
+                    onClick={handleAddToCart}
                   >
                     <CiShoppingCart /> <span>ADD TO CART</span>
                   </button>
