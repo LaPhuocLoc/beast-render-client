@@ -48,7 +48,7 @@ const Cart = ({ open, onClose }) => {
               {products.map(item => (
                 <div className="cart-item">
                   <div className="img">
-                    <Link to={`/product/${item.id}`} reloadDocument>
+                    <Link to={`/product/${item.id}`} >
                       <img src={ item.img} alt="" />
                     </Link>
                   </div>

@@ -5,7 +5,7 @@ import { IoAdd, IoRemove } from 'react-icons/io5'
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/cartReducer";
 import { apiClient } from './../../apiClient/apiClient';
-
+import Loading from "../../components/Loading/Loading";
 import './product.scss'
 
 const Product = () => {
@@ -30,7 +30,7 @@ const Product = () => {
   }, [id]);
   return (
     <div className="product">
-      {loading ? "loading" :
+      {loading ? <Loading/> :
         (
           <>
             {/* <div className="slide"></div> */}
