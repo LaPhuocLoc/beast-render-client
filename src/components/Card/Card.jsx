@@ -18,7 +18,7 @@ const Card = ({ item }) => {
             {item?.attributes.isNew && <span>Best Seller</span>}
             <img
               src={
-                process.env.REACT_APP_UPLOAD_URL + item.attributes?.img?.data?.attributes?.url
+                item.attributes?.img?.data?.attributes?.url
               }
               alt=""
             />

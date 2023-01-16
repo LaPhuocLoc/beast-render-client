@@ -39,7 +39,7 @@ const Product = () => {
                 <span>Best Seller</span>
                 <img
                   src={
-                    process.env.REACT_APP_UPLOAD_URL +
+                    
                     data?.attributes?.img?.data?.attributes?.url
                   }
                   alt=""

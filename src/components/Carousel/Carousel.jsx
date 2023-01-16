@@ -128,7 +128,7 @@ const CarouselItem = props => {
         </Row>
         <div className="carousel__item__content__img">
           <img src={
-            process.env.REACT_APP_UPLOAD_URL + item.attributes?.img?.data?.attributes?.url
+             item.attributes?.img?.data?.attributes?.url
           } alt="" />
         </div>
       </div>

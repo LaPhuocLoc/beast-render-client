@@ -49,7 +49,7 @@ const Cart = ({ open, onClose }) => {
                 <div className="cart-item">
                   <div className="img">
                     <Link to={`/product/${item.id}`} reloadDocument>
-                      <img src={process.env.REACT_APP_UPLOAD_URL + item.img} alt="" />
+                      <img src={ item.img} alt="" />
                     </Link>
                   </div>
                   <div className="content">

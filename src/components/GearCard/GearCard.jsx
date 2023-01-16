@@ -9,7 +9,7 @@ const GearCard = props => {
     <div className="gear-card">
       <div className="gear-card__img">
         <img src={
-          process.env.REACT_APP_UPLOAD_URL + item.attributes?.img?.data?.attributes?.url
+           item.attributes?.img?.data?.attributes?.url
         } alt="" />
       </div>
       <div className="gear-card__body">
