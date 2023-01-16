@@ -2,7 +2,9 @@ import React from "react";
 import "./list.scss";
 import Card from "../Card/Card";
 import { motion } from 'framer-motion'
-const List = ({ selectedBrands, selectedCates, sort, items }) => {
+import { Skeleton } from 'antd';
+
+const List = ({ loading, selectedBrands, selectedCates, sort, items }) => {
   // const { data, loading, error } = useFetch(
   //   cateType === 'categories'
   //     ? `/products?populate=*&[filters][categories][title]=${cateName}${subCats.map(
@@ -25,12 +27,26 @@ const List = ({ selectedBrands, selectedCates, sort, items }) => {
     : sort === 'name'
       ? data.sort((a, b) => a.attributes.title.localeCompare(b.attributes.title))
       : data.sort((a, b) => b.attributes.price - a.attributes.price)
+  if (loading) {
+    return (
+      <div className="list">
+        <Skeleton active avatar />
+        <Skeleton active avatar />
+        <Skeleton active avatar />
+        <Skeleton active avatar />
+        <Skeleton active avatar />
+        <Skeleton active avatar />
+      </div>
+    )
+  }
   return (
     <motion.div
       layout
       className="list"
     >
-      {sortedData?.map((item) => <Card item={item} key={item.id} />)}
+      {
+        sortedData?.map((item) => <Card item={item} key={item.id} />)
+      }
     </motion.div>
   );
 };

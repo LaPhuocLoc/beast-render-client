@@ -6,6 +6,7 @@ import useFetch from "../../hooks/useFetch";
 import "./categories.scss";
 import List from '../../components/List/List';
 import thumbnails from '../../assets/categories/categories.png'
+import { Skeleton } from 'antd';
 
 const Categories = () => {
   const cateType = useLocation().pathname.split('/')[1];
@@ -18,9 +19,9 @@ const Categories = () => {
   const [selectedBrands, setSelectedBrands] = useState([]);
   const [selectedCates, setSelectedCates] = useState([]);
   const [sort, setSort] = useState('asc');
-  const { data } = useFetch('/products?populate=*&pagination[page]=1&pagination[pageSize]=50');
-  const { data: filterCate } = useFetch(`/categories${cateType === 'sub-categories' ? `?[filters][sub_categories][title][$eq]=${cateName}` : '?'}`)
-  const { data: filterBrand } = useFetch(`/sub-categories${cateType === 'categories' ? `?[filters][categories][title][$eq]=${cateName}` : '?'}`)
+  const { data, loading } = useFetch('/products?populate=*&pagination[page]=1&pagination[pageSize]=50');
+  const { data: filterCate, loading: filterCateLoading } = useFetch(`/categories${cateType === 'sub-categories' ? `?[filters][sub_categories][title][$eq]=${cateName}` : '?'}`)
+  const { data: filterBrand, loading: filterBrandLoading } = useFetch(`/sub-categories${cateType === 'categories' ? `?[filters][categories][title][$eq]=${cateName}` : '?'}`)
   // cateType === 'categories'
   //   ? `/sub-categories?[filters][categories][title][$eq]=${cateName}`
   //   : cateType === 'sub-categories'
@@ -79,36 +80,40 @@ const Categories = () => {
                   {(cateType === 'categories' || cateType === 'products') &&
                     (<div className="filterItem">
                       <h2>Product Brands</h2>
-                      <Checkbox.Group>
-                        {filterBrandItems?.map((item, i) => (
-                          <div className="inputItem" key={i}>
-                            <Checkbox
-                              id={item}
-                              value={item}
-                              onChange={handleBrandChange}
-                            >
-                              {item}
-                            </Checkbox>
-                          </div>
-                        ))}
-                      </Checkbox.Group>
+                      {filterBrandLoading ? <Skeleton active /> : (
+                        <Checkbox.Group>
+                          {filterBrandItems?.map((item, i) => (
+                            <div className="inputItem" key={i}>
+                              <Checkbox
+                                id={item}
+                                value={item}
+                                onChange={handleBrandChange}
+                              >
+                                {item}
+                              </Checkbox>
+                            </div>
+                          ))}
+                        </Checkbox.Group>
+                      )}
                     </div>)
                   }
                   {(cateType === 'sub-categories' || cateType === 'products') &&
                     (
                       <div className="filterItem">
                         <h2>Product Categories</h2>
-                        <Checkbox.Group>
-                          {filterCateItems?.map((item, i) => (
-                            <div className="inputItem" key={i}>
-                              <Checkbox
-                                id={item}
-                                value={item}
-                                onChange={handleCateChange}
-                              >{item}</Checkbox>
-                            </div>
-                          ))}
-                        </Checkbox.Group>
+                        {filterCateLoading ? <Skeleton active paragraph={{ width: 100 }} /> : (
+                          <Checkbox.Group>
+                            {filterCateItems?.map((item, i) => (
+                              <div className="inputItem" key={i}>
+                                <Checkbox
+                                  id={item}
+                                  value={item}
+                                  onChange={handleCateChange}
+                                >{item}</Checkbox>
+                              </div>
+                            ))}
+                          </Checkbox.Group>
+                        )}
                       </div>
                     )}
                   <div className="filterItem">
@@ -161,6 +166,7 @@ const Categories = () => {
               <Col xs={24} md={18}>
                 <div className="right">
                   <List
+                    loading={loading}
                     sort={sort}
                     selectedBrands={selectedBrands}
                     selectedCates={selectedCates}
